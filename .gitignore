@@ -1,0 +1,18 @@
+#ignore json files
+*.json
+
+#ignore node_modules
+node_modules/
+
+#ignore csv files
+*.csv
+
+#ignore mp3 and its image files
+*.mp3
+*.png
+*.jpg
+*.ico
+
+
+#ignore log files
+*.log

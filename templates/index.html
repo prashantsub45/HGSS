@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Music Player</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}" defer></script>
+    <script src="https://kit.fontawesome.com/c057609ff7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico')}}" type="image/x-icon">
+    <script>
+       const fetchApi = async () => {
+    try {
+        const response = await fetch('http://localhost:4000/okay');
+        const res = await response.json();
+        const str=res[0].comm;
+        
+        if (str === "next") {
+            await fetch('http://localhost:4000/okay', {
+            method: 'POST', // Specify the HTTP method
+            headers: {
+                'Content-Type': 'application/json' // Specify the content type
+            },
+            body: JSON.stringify({success:true})
+        });
+            nextTrack();
+            return;
+            
+        } else if (str === "previous") {
+            await fetch('http://localhost:4000/okay', {
+            method: 'POST', // Specify the HTTP method
+            headers: {
+                'Content-Type': 'application/json' // Specify the content type
+            },
+            body: JSON.stringify({success:true})
+        });
+            prevTrack();
+          
+            return ;
+        } else if (str === "play") {
+            
+            await fetch('http://localhost:4000/okay', {
+            method: 'POST', // Specify the HTTP method
+            headers: {
+                'Content-Type': 'application/json' // Specify the content type
+            },
+            body: JSON.stringify({success:true})
+        });
+        playpauseTrack();
+        return;
+            
+        } else if (res.comm === "pause") {
+          
+            response = await fetch('http://localhost:4000/okay', {
+            method: 'POST', // Specify the HTTP method
+            headers: {
+                'Content-Type': 'application/json' // Specify the content type
+            },
+            body: JSON.stringify({success:true})
+        });
+        playpauseTrack();
+            return true;
+        } else {
+            // Handle unrecognized command
+            console.log("Unrecognized command:", res.comm);
+            return true;
+        }
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+
+        setInterval(fetchApi, 2000);
+    </script>
+</head>
+<body>
+    <div class="player">
+        <div class="wrapper">
+            <div class="details">
+                <div class="now-playing">Playing x of y</div>
+                <div class="track-art"></div>
+                <div class="track-name">Track Name</div>
+                <div class="track-artist">Track Artist</div>
+            </div>
+            <div class="slider_container">
+                <div class="current-time">00:00</div>
+                <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+                <div class="total-duration">00:00</div> 
+            </div>
+            <div class="slider_container">
+                <i class="fa-sharp fa-solid fa-volume-low"></i>
+                <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
+                <i class="fa-sharp fa-solid fa-volume-high"></i>
+            </div>
+            <div class="buttons">
+                <div class="random-track" onclick="randomTrack()">
+                    <i class="fa-solid fa-shuffle"></i>
+                </div>
+                <div class="prev-track" onclick="prevTrack()">
+                    <i class="fa-solid fa-backward-step"></i>
+                </div>
+                <div class="playpause-track" onclick="playpauseTrack()">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+                <div class="next-track" onclick="nextTrack()">
+                    <i class="fa-solid fa-forward-step"></i>
+                </div>
+                <div class="repeat-track" onclick="repeatTrack()">
+                    <i class="fa-solid fa-repeat"></i>
+                </div>
+            </div>
+
+            <!--<div id="wave">
+                <span class="stroke"></span>
+                <span class="stroke"></span>
+                <span class="stroke"></span>
+                <span class="stroke"></span>
+                <span class="stroke"></span>
+                <span class="stroke"></span>
+                <span class="stroke"></span>
+            </div>-->
+
+        </div>
+    </div>
+
+    
+</body>
+</html>
