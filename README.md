@@ -2,6 +2,9 @@
 A gesture-controlled music player powered by OpenCV, cvzone, and a beautiful HTML/CSS/JS UI.
 Control your music without touching a thing – just wave your hand!
 
+## UI of the web app
+![UI of web app] (C:/Users/ASUS/Desktop/Final minor project/HGSS/static/images/UI.png)
+
 
 ## **🧠 How It Works**
 🎯 Functionality:

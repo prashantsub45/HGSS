@@ -10,6 +10,7 @@ node_modules/
 #ignore mp3 and its image files
 *.mp3
 *.png
+!static/images/UI.png
 *.jpg
 *.ico
 
