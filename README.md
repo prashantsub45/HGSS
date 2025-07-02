@@ -19,7 +19,7 @@ Control your music without touching a thing – just wave your hand!
 
 ## **📂 Project Structure**
 ```
-HGSS/
+Hand_Gestured_Sound_System-HGSS/
 ├── back/
 │   ├── app.js                  # JavaScript server logic (optional Node usage)
 │   ├── package.json            # Node project setup
@@ -56,7 +56,7 @@ Install required Python packages:
 pip install opencv-python cvzone flask numpy
 ```
 **▶️ Run the Backend**
-Make sure you are in the project root (HGSS/), then run:
+Make sure you are in the project root (Hand_Gestured_Sound_System-HGSS/), then run:
 ```
 python app.py
 ```
@@ -83,7 +83,7 @@ Note: The backend serves the index.html and static files through Flask templates
 
   - Closed fist = Pause
 
-Works with any `.mp3` files added to `/static/music/`. I haven't included those files here along with their images covers.
+Works with any `.mp3` files added to `/static/music/`. Haven't included those files here along with their images covers !!!
 
 ## 🖼️ UI & Assets
 - UI assets and icons live in `static/images/`
